@@ -32,11 +32,11 @@ async def on_text_message(message: types.Message):
             await message.reply('привет <b>{}</b>!'.format(message.from_user.full_name))
             
     
-    
+    # Admin Panel
     elif message.text.lower()=='admin123':
         global admin
         admin=True
-        
+    # TikTok Video Download  
     else:
         for entity in message.entities:
             if entity.type in ["url", "text_link"]:
@@ -47,6 +47,8 @@ async def on_text_message(message: types.Message):
 @dp.message_handler(content_types=['sticker'])
 async def on_sticker_message(message: types.Message):
     await message.reply_sticker(sticker = 'CAACAgIAAxkBAAIF9mKGqGLTia1bSVlYA1fK-lGHrLYkAALPAAP3AsgPufg4-6cYrv0kBA')
+
+
 
 @dp.message_handler(content_types=['photo'])
 async def on_photo_message(message: types.Message):
