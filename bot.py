@@ -1,13 +1,14 @@
 from email.mime import image
 from aiogram import Bot, Dispatcher, executor, types
-from dotenv import dotenv_values
+from dotenv import load_dotenv
 from database import *
+import os
 from tiktok import *
-config = dotenv_values('.env')
+load_dotenv()
 
 
 admin=False
-TOKEN = config['TOKEN']
+TOKEN = os.getenv('TOKEN')
 bot = Bot(token = TOKEN, parse_mode = types.ParseMode.HTML)
 
 dp = Dispatcher(bot)
@@ -39,7 +40,7 @@ async def on_text_message(message: types.Message):
     else:
         for entity in message.entities:
             if entity.type in ["url", "text_link"]:
-                await tiktok(message,config['HOST'],config['KEY'])
+                await tiktok(message,os.getenv('HOST'),os.getenv('KEY'))
                 break
             
 
