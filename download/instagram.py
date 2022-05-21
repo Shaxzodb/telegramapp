@@ -1,5 +1,5 @@
 import requests
-
+# Instagram video yuklash
 async def instagram(message,HOST,KEY,URL):
     try:
         url = URL

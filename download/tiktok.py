@@ -1,5 +1,5 @@
 import requests
-
+# Tiktok video yuklash
 async def tiktok(message,HOST,KEY,URL):
     
     try:
