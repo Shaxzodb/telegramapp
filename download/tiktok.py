@@ -1,9 +1,9 @@
 import requests
 
-async def tiktok(message,HOST,KEY):
+async def tiktok(message,HOST,KEY,URL):
     
     try:
-        url = "https://tiktok-video-no-watermark2.p.rapidapi.com/"
+        url = URL
 
         querystring = {"url":f"{message.text}","hd":"0"}
 

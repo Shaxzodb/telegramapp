@@ -1,0 +1,3 @@
+run:
+	echo Bot Running...
+	python bot.py
