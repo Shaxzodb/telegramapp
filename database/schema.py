@@ -21,8 +21,8 @@ async def add_user(message):
             conn.commit()
             await message.answer('Salom <b>{}</b>! - botga hush kelibsiz bot haqida malumot olish uchun /help buyrug\'ini kiriting 😊'.format(message.from_user.full_name))
         else:
-            # cursor.execute(f"UPDATE users SET last_name={message.from_user.last_name}, first_name={message.from_user.first_name} WHERE chat_id={message.chat.id}")
-            # conn.commit()
+            cursor.execute(f"UPDATE users SET last_name = '{message.from_user.last_name}', first_name = '{message.from_user.first_name}' WHERE chat_id = {message.chat.id}")
+            conn.commit()
             await message.answer('Salom <b>{}</b>! - botga qaytganingizdan hursandmiz 😊'.format(message.from_user.full_name))
             
 
