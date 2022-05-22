@@ -26,8 +26,7 @@ async def cmd_start(message: types.Message):
 @dp.message_handler(commands = ['help'])
 async def cmd_help(message: types.Message):
     await message.answer(
-        '<b>Tik Tok</b> - tiktok va instagram download bot video va photo\
-        yuklab olish uchun linkini kiriting <b>/help</b> - bot haqida malumot olish uchun'
+        '<b>Tik Tok</b> - tiktok va instagram download bot video va photo yuklab olish uchun linkini kiriting <b>/help</b> - bot haqida malumot olish uchun'
     )
     
 @dp.message_handler(commands = ['count'])
