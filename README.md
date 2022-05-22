@@ -6,7 +6,7 @@ pipenv install
 ## Run Bot
 
 
-> ``` make ```  or  ``` python bot.py ```
+> ` make `  or  ` python bot.py `
 ##
 #### TikTok Download
 ```python
