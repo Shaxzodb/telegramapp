@@ -3,12 +3,31 @@
 ```gitbash
 pipenv install 
 ```
-### Run Bot
-======
+## Run Bot
+
 ``` make ``` | or | ``` python bot.py ```
-===
+##
 ```python
-def FuncName():
-    print("Telegram bot")
+import requests
+# Tiktok video yuklash
+async def tiktok(message,HOST,KEY,URL):
+    
+    try:
+        url = URL
+
+        querystring = {"url":f"{message.text}","hd":"0"}
+
+        headers = {
+	        "X-RapidAPI-Host": HOST,
+	        "X-RapidAPI-Key": KEY
+        }
+
+        response = requests.request("GET", url, headers=headers, params=querystring)
+        await message.answer_video(video = response.json()['data']['play'])
+    except:
+        await message.answer('<b>{}</b> - tiktok video yuklanmadi qaytib link ni tug\'riligini tekshirib ko\'ring'.format(message.text))
+       
+
+    
 ```
 
