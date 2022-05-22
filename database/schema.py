@@ -1,7 +1,7 @@
 from sqlite3 import connect
-#__all__ = ['get_user','count_user','add_user','conn','cursor']
-aSSA="SASA"
-conn=connect("sqlite3.conn")
+__all__ = ['get_user','count_user','add_user','conn']
+
+conn=connect("sqlite3.db")
 cursor=conn.cursor()
 try:
     table ="""CREATE TABLE users("id" INTEGER,chat_id INTEGER ,last_name VARCHAR(255), first_name VARCHAR(255),PRIMARY KEY("id" AUTOINCREMENT));"""
