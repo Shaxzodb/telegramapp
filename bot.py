@@ -1,11 +1,9 @@
 
 from aiogram import Bot, Dispatcher, executor, types
 from dotenv import load_dotenv
-from database.db import *
+from database import *
 import os
-
-from download.tiktok import *
-from download.instagram import *
+from download import *
 load_dotenv()
 
 channels=['@masteruzdev']
@@ -21,7 +19,6 @@ dp = Dispatcher(bot)
 @dp.message_handler(commands = ['start'])
 async def cmd_start(message: types.Message):
     await add_user(message)
-   
     
 @dp.message_handler(commands = ['help'])
 async def cmd_help(message: types.Message):
@@ -146,5 +143,4 @@ async def on_pinned_message(message: types.Message):
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates = True)
-    db.close()
-    
+    conn.close()
