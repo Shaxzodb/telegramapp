@@ -7,8 +7,12 @@ pipenv install
 ```bash
 make
 ```
-### |OR|
+#### |OR|
 ```python
 python bot.py
+```
+```python
+def FuncName():
+  print("Telegram bot")
 ```
 
