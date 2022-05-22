@@ -1,5 +1,14 @@
 # telegram_aiogram_bot
 
-```py
+```git
 pipenv install
 ```
+### Run bot
+```make
+make
+```
+### OR
+```py
+python bot.py
+```
+
