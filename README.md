@@ -1,18 +1,12 @@
 # telegram_aiogram_bot
 
-```bash
-pipenv install
-```
+``` pipenv install ```
 ### Run bot
-```bash
-make
-```
+``` make ```
 #### |OR|
-```python
-python bot.py
-```
+``` python bot.py ```
 ```python
 def FuncName():
-  print("Telegram bot")
+    print("Telegram bot")
 ```
 
