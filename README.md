@@ -6,7 +6,7 @@ pipenv install
 ## Run Bot
 
 
-``` make ``` | or | ``` python bot.py ```
+> ``` make ```  or  ``` python bot.py ```
 ##
 #### TikTok Download
 ```python
@@ -62,4 +62,10 @@ async def instagram(message,HOST,KEY,URL):
         await message.answer('<b>{}</b> - tiktok video yuklanmadi qaytib link ni tug\'riligini tekshirib ko\'ring'.format(message.text))
    
 ```
+> Telegram Bot pacages
 
+- python version 3.10.x
+    - aiogram
+    - pysqlite3
+    - requests
+    
