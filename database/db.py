@@ -23,6 +23,8 @@ async def add_user(message):
             db.commit()
             await message.answer('Salom <b>{}</b>! - botga hush kelibsiz bot haqida malumot olish uchun /help buyrug\'ini kiriting 😊'.format(message.from_user.full_name))
         else:
+            # cursor.execute(f"UPDATE users SET last_name={message.from_user.last_name} first_name={message.from_user.first_name} WHERE chat_id={message.chat.id}")
+            # db.commit()
             await message.answer('Salom <b>{}</b>! - botga qaytganingizdan hursandmiz 😊'.format(message.from_user.full_name))
             
 
@@ -31,9 +33,19 @@ async def add_user(message):
         print('Error: ',err)
 async def get_user():
     try:
-        user=cursor.execute('''SELECT * FROM users''')
+        user= cursor.execute('''SELECT * FROM users''')
         return user
     except Exception as err:
         print('Error: ',err)
+        
+async def count_user():
+    try:
+        user = cursor.execute('''SELECT COUNT(chat_id) FROM users''')
+        return user.fetchone()[0]
+
+    except Exception as err:
+        print('Error: ',err)
+
+
 
     
