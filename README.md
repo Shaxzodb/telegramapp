@@ -1,10 +1,10 @@
-# telegram_aiogram_bot
+# Telegram Bot Python Aiogram
 
-``` pipenv install ```
-### Run bot
-``` make ```
-#### |OR|
-``` python bot.py ```
+```gitbash
+pipenv install 
+```
+### Run Bot
+``` make ```|OR|``` python bot.py ```
 ```python
 def FuncName():
     print("Telegram bot")
