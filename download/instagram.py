@@ -1,3 +1,4 @@
+import logging
 import requests
 # Instagram video yuklash
 async def instagram(message,HOST,KEY,URL):
@@ -20,6 +21,6 @@ async def instagram(message,HOST,KEY,URL):
             
                 await message.answer_photo(photo = img )
                 await message.answer_video(video = img )
-    except:
-        await message.answer('<b>{}</b> - tiktok video yuklanmadi qaytib link ni tug\'riligini tekshirib ko\'ring'.format(message.text))
-   
+    except Exception as error:
+        await message.answer('<b>{}</b> - instagram video yuklanmadi qaytib link ni tug\'riligini tekshirib ko\'ring'.format(message.text))
+        logging.error(f'Instagram File: {error}')

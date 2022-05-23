@@ -1,4 +1,7 @@
 from sqlite3 import connect
+from bot import logging
+import datetime
+
 __all__ = ['get_user','count_user','add_user','conn']
 
 conn=connect("sqlite3.db")
@@ -7,9 +10,10 @@ try:
     table ="""CREATE TABLE users("id" INTEGER,chat_id INTEGER ,last_name VARCHAR(255), first_name VARCHAR(255),PRIMARY KEY("id" AUTOINCREMENT));"""
     cursor.execute(table)
     conn.commit()
-    print('Table is created')
+    logging.info("Database is created")
 except:
-    print("Table already exists")
+    logging.info("Database is already created")
+    pass
     
 async def add_user(message):
     try:
@@ -27,23 +31,40 @@ async def add_user(message):
             
 
             
-    except Exception as err:
-        print('Error: ',err)
+    except Exception as error:
+        logging.error(f'Database: {error}')
 async def get_user():
     try:
         user= cursor.execute('''SELECT * FROM users''')
         return user
-    except Exception as err:
-        print('Error: ',err)
+    except Exception as error:
+        logging.error(f'Database: {error}')
         
 async def count_user():
     try:
         user = cursor.execute('''SELECT COUNT(chat_id) FROM users''')
         return user.fetchone()[0]
 
-    except Exception as err:
-        print('Error: ',err)
+    except Exception as error:
+        logging.error(f'Database: {error}')
 
+def Cope_DataBase():
+    try:
+        cursor.execute('''CREATE TABLE users_copy("id" INTEGER,chat_id INTEGER ,last_name VARCHAR(255), first_name VARCHAR(255));''')
+        conn.commit()
+
+        cursor.execute("INSERT INTO users_copy SELECT * FROM users;")
+        conn.commit()
+    except Exception as error:
+        logging.error(f'Database: {error}')
+
+if datetime.date.today().day == 23:
+    try:
+        cursor.execute("DROP TABLE users_copy;")
+        conn.commit()
+    except Exception as error:
+        logging.error(f'Database: {error}')
+    Cope_DataBase()
 
 if __name__ == '__main__':
     conn.close()

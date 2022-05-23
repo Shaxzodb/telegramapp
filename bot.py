@@ -1,15 +1,16 @@
-
 from aiogram import Bot, Dispatcher, executor, types
 from dotenv import load_dotenv
-from database import *
 import os
 from download import *
+from database import *
+
 load_dotenv()
 
 channels=['@masteruzdev']
 
 admins=[]
 
+logging.basicConfig(filename='bot.log',level=logging.INFO,filemode='a')
 
 TOKEN = os.getenv('TOKEN')
 bot = Bot(token = TOKEN, parse_mode = types.ParseMode.HTML)
@@ -20,11 +21,7 @@ dp = Dispatcher(bot)
 async def cmd_start(message: types.Message):
     await add_user(message)
     
-@dp.message_handler(commands = ['help'])
-async def cmd_help(message: types.Message):
-    await message.answer(
-        '<b>Tik Tok</b> - tiktok va instagram download bot video va photo yuklab olish uchun linkini kiriting <b>/help</b> - bot haqida malumot olish uchun'
-    )
+
     
 @dp.message_handler(commands = ['count'])
 async def cmd_count(message: types.Message):
@@ -32,6 +29,34 @@ async def cmd_count(message: types.Message):
         if admin == message.from_user.id:
             await message.answer(f'Botga qo\'shilgan foydalanuvchilar soni - <b>{await count_user()}</b>')
 
+@dp.message_handler(commands = ['admins'])
+async def cmd_admins(message: types.Message):
+    await message.answer(f'Bot administratorlar soni - <b>{len(admins)}</b>')
+
+@dp.message_handler(commands = ['logs'])
+async def cmd_logs(message: types.Message):
+    for admin in admins:
+        if admin == message.from_user.id:
+            try:
+                with open('bot.log','r') as file:
+                    await message.answer(file.read())
+            except Exception as error:
+                logging.error(f'Logs: {error}')
+                await message.answer('Loglar yuklanmadi')
+
+@dp.message_handler(commands = ['help'])
+async def cmd_help(message: types.Message):
+    
+    for admin in admins:
+        if admin == message.chat.id:
+            await message.answer(
+                '<b>Bot administratorlar uchun:\n</b> /admins - Adminlar soni\n/count - Foydalanuvchilar soni\n/logs - Bot loglarini olish \n\n '
+            )
+        else:
+            await message.answer(
+                '<b>Tik Tok</b> - tiktok va instagram download bot video va photo yuklab olish uchun linkini kiriting <b>/help</b> - bot haqida malumot olish uchun'
+            )
+            
 @dp.message_handler(content_types = ['text'])
 async def on_text_message(message: types.Message):
   
@@ -60,7 +85,7 @@ async def on_text_message(message: types.Message):
                     # channel 
                     if status['status'] == 'member' or status['status'] == 'creator' or status['status'] == 'administrator':
                         if message.text.lower().startswith('https://www.tiktok.com/'):
-                            await tiktok(message,os.getenv('THOST'),os.getenv('TKEY'),os.getenv('TURL'))
+                            await tiktok(message,os.getenv('THOST'),os.getenv('TKEY'),os.getenv('TURL'),logging)
                             break
                         elif message.text.lower().startswith('https://www.instagram.com/'):
                             await instagram(message,os.getenv('YHOST'),os.getenv('YKEY'),os.getenv('YURL'))
@@ -75,10 +100,10 @@ async def on_text_message(message: types.Message):
                         markup.add(button)
                         await message.reply('<b>{}</b> - kanalga obuna buling'.format(message.text), reply_markup = markup)
                 except Exception as error:
-                    print(error)
-                    # button =types.InlineKeyboardButton(text = 'Botga Utish', callback_data='1', login_url = types.LoginUrl(url = 'https://t.me/python_node_aiogram_telegraf_bot'))
-                    # markup = types.InlineKeyboardMarkup().insert(button)
-                    # await message.reply('<b>{}</b> - Botga utinb linkni tashlang'.format(message.text),reply_markup = markup)
+                    logging.error(f'Bot File: {error}')
+                    button = types.InlineKeyboardButton(text = 'Botga Utish', callback_data='1', login_url = types.LoginUrl(url = 'https://t.me/python_node_aiogram_telegraf_bot'))
+                    markup = types.InlineKeyboardMarkup().insert(button)
+                    await message.reply('<b>{}</b> - Botga utinb linkni tashlang'.format(message.text),reply_markup = markup)
             
                     
 @dp.message_handler(content_types = ['sticker'])
@@ -97,7 +122,7 @@ async def on_photo_message(message: types.Message):
                 try:
                     await bot.send_photo(img[1],photo=message.photo[-1].file_id,caption=message.caption)
                 except Exception as error:
-                    print('Error: ',error)
+                    logging.error(f'Bot File: {error}')
             
             break
             
