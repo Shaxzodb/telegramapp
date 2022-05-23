@@ -1,13 +1,12 @@
 # Telegram Bot Python Aiogram
 
-```gitbash
+```cmd
 pipenv install 
 ```
 ## Run Bot
-
-
+#
 > ` make `  or  ` python bot.py `
-##
+#
 #### TikTok Download
 ```python
 import requests

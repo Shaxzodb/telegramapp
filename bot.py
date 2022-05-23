@@ -28,10 +28,14 @@ async def cmd_count(message: types.Message):
     for admin in admins:
         if admin == message.from_user.id:
             await message.answer(f'Botga qo\'shilgan foydalanuvchilar soni - <b>{await count_user()}</b>')
+            break
 
 @dp.message_handler(commands = ['admins'])
 async def cmd_admins(message: types.Message):
-    await message.answer(f'Bot administratorlar soni - <b>{len(admins)}</b>')
+    for admin in admins:
+        if admin == message.from_user.id:
+            await message.answer(f'Bot administratorlar soni - <b>{len(admins)}</b>')
+            break
 
 @dp.message_handler(commands = ['logs'])
 async def cmd_logs(message: types.Message):
@@ -40,9 +44,11 @@ async def cmd_logs(message: types.Message):
             try:
                 with open('bot.log','r') as file:
                     await message.answer(file.read())
-            except Exception as error:
-                logging.error(f'Logs: {error}')
-                await message.answer('Loglar yuklanmadi')
+                    break
+            except Exception as warning:
+                logging.warning(f'Log: {warning}')
+                await message.answer('Xatolik yo\'q')
+                break
 
 @dp.message_handler(commands = ['help'])
 async def cmd_help(message: types.Message):
@@ -52,14 +58,16 @@ async def cmd_help(message: types.Message):
             await message.answer(
                 '<b>Bot administratorlar uchun:\n</b> /admins - Adminlar soni\n/count - Foydalanuvchilar soni\n/logs - Bot loglarini olish \n\n '
             )
-        else:
-            await message.answer(
-                '<b>Tik Tok</b> - tiktok va instagram download bot video va photo yuklab olish uchun linkini kiriting <b>/help</b> - bot haqida malumot olish uchun'
-            )
+            break
+        
+    await message.answer(
+        '<b>Tik Tok</b> - tiktok va instagram download bot video va photo yuklab olish uchun linkini kiriting <b>/help</b> - bot haqida malumot olish uchun'
+    )
+        
             
 @dp.message_handler(content_types = ['text'])
 async def on_text_message(message: types.Message):
-  
+    
     
     if message.text.lower() == 'ассалом алейкум'\
         or message.text.lower() =='salom alaykum' or message.text.lower() == 'salom'\
@@ -111,20 +119,26 @@ async def on_sticker_message(message: types.Message):
     await message.reply_sticker(sticker = 'CAACAgIAAxkBAAIF9mKGqGLTia1bSVlYA1fK-lGHrLYkAALPAAP3AsgPufg4-6cYrv0kBA')
 
 
-
+album_data = []
+album_caption = []
 @dp.message_handler(content_types = ['photo'])
 async def on_photo_message(message: types.Message):
+    
     for admin in admins:
-        if admin==message.from_user.id:
-            
-            user= await get_user()
-            for img in user.fetchall():
-                try:
-                    await bot.send_photo(img[1],photo=message.photo[-1].file_id,caption=message.caption)
-                except Exception as error:
-                    logging.error(f'Bot File: {error}')
-            
-            break
+        if admin == message.from_user.id:
+            if message.media_group_id:
+                album_data.append(message.photo[-1].file_id)
+                if message.caption:
+                    album_caption.append(message.caption)
+                else:
+                    album_caption.append('')
+                await message.reply('<b>{}</b> - foto yuklandi'.format(len(album_data)))
+                break
+            else:
+                user = await get_user()
+                for chat_id in user.fetchall():
+                    await bot.send_photo(chat_id[1], photo = message.photo[-1].file_id, caption = message.caption,caption_entities=message.caption_entities)
+           
             
 # @dp.callback_query_handler()
 # async def on_callback_query(callback_query: types.CallbackQuery):
