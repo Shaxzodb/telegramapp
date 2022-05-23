@@ -48,7 +48,7 @@ async def count_user():
     except Exception as error:
         logging.error(f'Database: {error}')
 
-def Cope_DataBase():
+def Copy_DataBase():
     try:
         cursor.execute('''CREATE TABLE users_copy("id" INTEGER,chat_id INTEGER ,last_name VARCHAR(255), first_name VARCHAR(255));''')
         conn.commit()
@@ -64,7 +64,7 @@ if datetime.date.today().day == 23:
         conn.commit()
     except Exception as error:
         logging.error(f'Database: {error}')
-    Cope_DataBase()
+    Copy_DataBase()
 
 if __name__ == '__main__':
     conn.close()
