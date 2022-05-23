@@ -10,7 +10,7 @@ channels=['@masteruzdev']
 
 admins=[]
 
-logging.basicConfig(filename='bot.log',level=logging.INFO,filemode='a')
+logging.basicConfig(filename='bot.log',level=logging.ERROR,filemode='a')
 
 TOKEN = os.getenv('TOKEN')
 bot = Bot(token = TOKEN, parse_mode = types.ParseMode.HTML)
