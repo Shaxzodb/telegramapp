@@ -43,12 +43,12 @@ async def cmd_logs(message: types.Message):
         if admin == message.from_user.id:
             try:
                 with open('bot.log','r') as file:
-                    await message.answer('Error: 👁‍🗨\n\n',file.read())
+                    await message.answer('🚫Error:  ✔️\n\n',file.read())
                     break
             except Exception as warning:
                 # logging.warning(f'Log: {warning}')
                 print('Log: ',warning)
-                await message.answer('Error:  ✔️\n\n',warning)
+                await message.answer('🚫Error:  ✔️\n\n',warning)
 
 @dp.message_handler(commands = ['help'])
 async def cmd_help(message: types.Message):
