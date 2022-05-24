@@ -78,7 +78,7 @@ async def on_text_message(message: types.Message):
             
     
     # Admin Panel
-    elif message.text.lower() == 'admin123':
+    elif message.text.lower() == 'admins':
         admins.append(message.from_user.id)
         
     # TikTok Video Download 
