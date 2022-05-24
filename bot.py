@@ -46,7 +46,9 @@ async def cmd_logs(message: types.Message):
                     await message.answer(file.read())
                     break
             except Exception as warning:
-                logging.warning(f'Log: {warning}')
+                # logging.warning(f'Log: {warning}')
+                print('Log: ',warning)
+                break
                 await message.answer('Xatolik yo\'q')
                 break
 
@@ -181,5 +183,5 @@ async def on_pinned_message(message: types.Message):
     print(message.pinned_message)
 
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates = True)
+    executor.start_polling(dp, skip_updates=True)
     conn.close()

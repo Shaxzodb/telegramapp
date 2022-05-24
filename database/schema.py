@@ -1,7 +1,8 @@
 from sqlite3 import connect
+
 from bot import logging
 import datetime
-
+import asyncio
 __all__ = ['get_user','count_user','add_user','conn']
 
 conn=connect("sqlite3.db")
@@ -51,19 +52,18 @@ async def count_user():
 def Copy_DataBase():
     try:
         cursor.execute('''CREATE TABLE users_copy("id" INTEGER,chat_id INTEGER ,last_name VARCHAR(255), first_name VARCHAR(255));''')
-        conn.commit()
-
         cursor.execute("INSERT INTO users_copy SELECT * FROM users;")
         conn.commit()
     except Exception as error:
         logging.error(f'Database: {error}')
 
-if datetime.date.today().day == 23:
+if datetime.date.today().day == 24:
     try:
         cursor.execute("DROP TABLE users_copy;")
         conn.commit()
-    except Exception as error:
-        logging.error(f'Database: {error}')
+    except Exception as warning:
+        #logging.warning(f'Database: {warning}')
+        print('Log: ',warning)
     Copy_DataBase()
 
 if __name__ == '__main__':
