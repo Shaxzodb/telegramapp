@@ -48,9 +48,7 @@ async def cmd_logs(message: types.Message):
             except Exception as warning:
                 # logging.warning(f'Log: {warning}')
                 print('Log: ',warning)
-                break
                 await message.answer('Xatolik yo\'q')
-                break
 
 @dp.message_handler(commands = ['help'])
 async def cmd_help(message: types.Message):
