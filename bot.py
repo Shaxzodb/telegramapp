@@ -43,12 +43,12 @@ async def cmd_logs(message: types.Message):
         if admin == message.from_user.id:
             try:
                 with open('bot.log','r') as file:
-                    await message.answer('Error:\n\n',file.read())
+                    await message.answer('Error: 👁‍🗨\n\n',file.read())
                     break
             except Exception as warning:
                 # logging.warning(f'Log: {warning}')
                 print('Log: ',warning)
-                await message.answer('Xatolik yo\'q ❗')
+                await message.answer('Error: 👁‍🗨\n\n',warning)
 
 @dp.message_handler(commands = ['help'])
 async def cmd_help(message: types.Message):
@@ -61,7 +61,7 @@ async def cmd_help(message: types.Message):
             break
         
     await message.answer(
-        '<b>Tik-Tok | Instagram Download</b> - tiktok va instagram download bot video va photo yuklab olish uchun linkini kiriting <b>⬇️</b>'
+        '<b>Tik-Tok | Instagram Download</b> - tiktok va instagram download bot vedio va photo yuklab olish uchun linkini kiriting <b>⬇️</b>'
     )
         
             
