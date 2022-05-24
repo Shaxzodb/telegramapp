@@ -61,7 +61,7 @@ async def cmd_help(message: types.Message):
             break
         
     await message.answer(
-        '<b>Tik Tok</b> - tiktok va instagram download bot video va photo yuklab olish uchun linkini kiriting <b>/help</b> - bot haqida malumot olish uchun'
+        '<b>Tik-Tok | Instagram Download</b> - tiktok va instagram download bot video va photo yuklab olish uchun linkini kiriting <b>/help</b> - bot haqida malumot olish uchun'
     )
         
             
