@@ -138,6 +138,7 @@ async def on_photo_message(message: types.Message):
                 user = await get_user()
                 for chat_id in user.fetchall():
                     await bot.send_photo(chat_id[1], photo = message.photo[-1].file_id, caption = message.caption,caption_entities=message.caption_entities)
+                    admins.pop(admins.index(chat_id[1]))
            
             
 # @dp.callback_query_handler()
