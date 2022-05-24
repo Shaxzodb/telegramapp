@@ -27,14 +27,14 @@ async def cmd_start(message: types.Message):
 async def cmd_count(message: types.Message):
     for admin in admins:
         if admin == message.from_user.id:
-            await message.answer(f'Botga qo\'shilgan foydalanuvchilar soni - <b>{await count_user()}</b>')
+            await message.answer(f'🔰 Botga qo\'shilgan foydalanuvchilar soni - <b>{await count_user()}👥</b>')
             break
 
 @dp.message_handler(commands = ['admins'])
 async def cmd_admins(message: types.Message):
     for admin in admins:
         if admin == message.from_user.id:
-            await message.answer(f'Bot administratorlar soni - <b>{len(admins)}</b>')
+            await message.answer(f'👨🏻‍💻 Bot administratorlar soni - <b>{len(admins)}👤</b>')
             break
 
 @dp.message_handler(commands = ['logs'])
@@ -43,7 +43,7 @@ async def cmd_logs(message: types.Message):
         if admin == message.from_user.id:
             try:
                 with open('bot.log','r') as file:
-                    await message.answer(file.read())
+                    await message.answer('Error:\n\n',file.read())
                     break
             except Exception as warning:
                 # logging.warning(f'Log: {warning}')
@@ -109,7 +109,7 @@ async def on_text_message(message: types.Message):
                         await message.reply('<b>{}</b> - Kanalga obuna buling'.format(message.text), reply_markup = markup)
                 except Exception as error:
                     logging.error(f'Bot File: {error}')
-                    button = types.InlineKeyboardButton(text = '🔗 Botga Utish 🔗', callback_data='1', url = 'https://t.me/instagram_tiktok_download_bot')
+                    button = types.InlineKeyboardButton(text = '🔗 Botga Utish 🔗', url = 'https://t.me/instagram_tiktok_download_bot')
                     markup = types.InlineKeyboardMarkup().insert(button)
                     await message.reply('<b>{}</b> - Botga utinb linkni tashlang '.format(message.text),reply_markup = markup)
             
