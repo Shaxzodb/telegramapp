@@ -48,7 +48,7 @@ async def cmd_logs(message: types.Message):
             except Exception as warning:
                 # logging.warning(f'Log: {warning}')
                 print('Log: ',warning)
-                await message.answer('Xatolik yo\'q')
+                await message.answer('Xatolik yo\'q ❗')
 
 @dp.message_handler(commands = ['help'])
 async def cmd_help(message: types.Message):
@@ -56,12 +56,12 @@ async def cmd_help(message: types.Message):
     for admin in admins:
         if admin == message.chat.id:
             await message.answer(
-                '<b>Bot administratorlar uchun:\n</b> /admins - Adminlar soni\n/count - Foydalanuvchilar soni\n/logs - Bot loglarini olish \n\n '
+                '<b>Bot administratorlar uchun:\n</b>👨🏻‍💻/admins - Adminlar soni\n🔰/count - Foydalanuvchilar soni\n🚫/logs - Bot loglarini olish \n\n '
             )
             break
         
     await message.answer(
-        '<b>Tik-Tok | Instagram Download</b> - tiktok va instagram download bot video va photo yuklab olish uchun linkini kiriting <b>/help</b> - bot haqida malumot olish uchun'
+        '<b>Tik-Tok | Instagram Download</b> - tiktok va instagram download bot video va photo yuklab olish uchun linkini kiriting <b>⬇️</b>'
     )
         
             
@@ -103,15 +103,15 @@ async def on_text_message(message: types.Message):
                             break
                     else:
                         
-                        button = types.InlineKeyboardButton(text = 'Kanalga obuna buling', url = 'https://t.me/masteruzdev')
+                        button = types.InlineKeyboardButton(text = '🔗 Kanalga obuna buling 🔗', url = 'https://t.me/masteruzdev')
                         markup = types.InlineKeyboardMarkup()
                         markup.add(button)
-                        await message.reply('<b>{}</b> - kanalga obuna buling'.format(message.text), reply_markup = markup)
+                        await message.reply('<b>{}</b> - Kanalga obuna buling'.format(message.text), reply_markup = markup)
                 except Exception as error:
                     logging.error(f'Bot File: {error}')
-                    button = types.InlineKeyboardButton(text = 'Botga Utish', callback_data='1', login_url = types.LoginUrl(url = 'https://t.me/python_node_aiogram_telegraf_bot'))
+                    button = types.InlineKeyboardButton(text = '🔗 Botga Utish 🔗', callback_data='1', url = 'https://t.me/instagram_tiktok_download_bot')
                     markup = types.InlineKeyboardMarkup().insert(button)
-                    await message.reply('<b>{}</b> - Botga utinb linkni tashlang'.format(message.text),reply_markup = markup)
+                    await message.reply('<b>{}</b> - Botga utinb linkni tashlang '.format(message.text),reply_markup = markup)
             
                     
 @dp.message_handler(content_types = ['sticker'])
@@ -149,7 +149,7 @@ async def on_photo_message(message: types.Message):
 @dp.message_handler(content_types = ["new_chat_members"])
 async def on_new_chat_member(message: types.Message):
     await message.delete() 
-    await message.answer('<b>{}</b> - Guruhga hush kelibsiz'.format(message.from_user.full_name))
+    await message.answer('<b>{}</b> - Guruhga hush kelibsiz😊'.format(message.from_user.full_name))
        
 @dp.message_handler(content_types = ["left_chat_member"])
 async def on_left_chat_member(message: types.Message):
