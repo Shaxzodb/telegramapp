@@ -41,14 +41,18 @@ async def cmd_admins(message: types.Message):
 async def cmd_logs(message: types.Message):
     for admin in admins:
         if admin == message.from_user.id:
-            try:
-                with open('bot.log','r') as file:
-                    await message.answer('🚫Error:  ✔️\n\n',file.read())
-                    break
-            except Exception as warning:
-                # logging.warning(f'Log: {warning}')
-                print('Log: ',warning)
-                await message.answer('🚫Error:  ✔️\n\n',warning)
+            # try:
+            #     with open('bot.log','r') as file:
+            #         a=f'{file.read()}'
+                    
+            #         await message.answer(''f'🚫Error:  ✔️\n\n{a}''',parse_mode='TEXT')
+            #         break
+            # except Exception as warning:
+            #     # logging.warning(f'Log: {warning}')
+            #     print('Log: ',warning)
+            #     await message.answer(f'🚫Error:  ✔️\n\n{warning}',parse_mode=types.ParseMode.HTML)
+            #     break
+            await message.answer(f'🚫Error:  ✔️\n\n',parse_mode=types.ParseMode.HTML)
 
 @dp.message_handler(commands = ['help'])
 async def cmd_help(message: types.Message):
