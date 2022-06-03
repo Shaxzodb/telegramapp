@@ -107,10 +107,10 @@ async def on_text_message(message: types.Message):
                             break
                     else:
                         
-                        button = types.InlineKeyboardButton(text = '🔗 Kanalga obuna buling 🔗', url = 'https://t.me/masteruzdev')
+                        button = types.InlineKeyboardButton(text = '🔗 Kanalga O\'ting 🔗', url = 'https://t.me/masteruzdev')
                         markup = types.InlineKeyboardMarkup()
                         markup.add(button)
-                        await message.reply('<b>{}</b> - Kanalga obuna buling'.format(message.text), reply_markup = markup)
+                        await message.reply('<b>{}</b> - Kanalga obuna buling va qaytib linkni tashlang.'.format(message.text), reply_markup = markup)
                 except Exception as error:
                     logging.error(f'Bot File: {error}')
                     button = types.InlineKeyboardButton(text = '🔗 Botga Utish 🔗', url = 'https://t.me/instagram_tiktok_download_bot')
