@@ -5,7 +5,6 @@ async def tiktok(message,HOST,KEY,URL):
     
     try:
         url = URL
-
         querystring = {"url":f"{message.text}","hd":"0"}
 
         headers = {
