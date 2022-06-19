@@ -8,8 +8,9 @@ async def tiktok(message,HOST,KEY,URL):
         querystring = {"url":f"{message.text}"}
 
         headers = {
-	        "X-RapidAPI-Host": HOST,
-	        "X-RapidAPI-Key": KEY
+            "X-RapidAPI-Key": KEY,
+	        "X-RapidAPI-Host": HOST
+	        
         }
 
         response = requests.request("GET", url, headers=headers, params=querystring)
