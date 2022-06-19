@@ -5,7 +5,7 @@ async def tiktok(message,HOST,KEY,URL):
     
     try:
         url = URL
-        querystring = {"url":f"{message.text}","hd":"0"}
+        querystring = {"url":f"{message.text}"}
 
         headers = {
 	        "X-RapidAPI-Host": HOST,
@@ -13,7 +13,7 @@ async def tiktok(message,HOST,KEY,URL):
         }
 
         response = requests.request("GET", url, headers=headers, params=querystring)
-        await message.answer_video(video = response.json()['data']['play'])
+        await message.answer_video(video = response.json()['itemData']['video']['dynamic_cover']['url_list'][0])
     except Exception as error:
         
         await message.answer('<b>{}</b> - tiktok video yuklanmadi qaytib link ni tug\'riligini tekshirib ko\'ring'.format(message.text))

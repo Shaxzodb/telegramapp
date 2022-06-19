@@ -34,7 +34,7 @@ async def cmd_count(message: types.Message):
 async def cmd_admins(message: types.Message):
     for admin in admins:
         if admin == message.from_user.id:
-            await message.answer(f'👨🏻‍💻 Bot administratorlar soni - <b>{len(admins)}👤</b>')
+            await message.answer(f'👨🏻‍💻 Bot administratorlar soni hozir - <b>{len(admins)}👤</b>')
             break
 
 @dp.message_handler(commands = ['logs'])
