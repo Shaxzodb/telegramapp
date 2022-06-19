@@ -18,7 +18,7 @@ async def tiktok(message,HOST,KEY,URL):
     except Exception as error:
         
         #await message.answer('<b>{}</b> - tiktok video yuklanmadi qaytib link ni tug\'riligini tekshirib ko\'ring'.format(message.text))
-        await message.answer('<b>{}</b> - tiktok video tehnik sabablarga kura yuklanmadi buning uchun uzur suraymiz, botda tuzatish ishlari olib borilyapti tez orada bu xato tuzatiladi')
+        await message.answer('<b>{}</b> - tiktok video tehnik sabablarga kura yuklanmadi buning uchun uzur suraymiz, botda tuzatish ishlari olib borilyapti tez orada bu xato tuzatiladi'.format(message.text))
         logging.error(f'Tiktok File: {error}')
 
     
