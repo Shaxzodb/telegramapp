@@ -98,9 +98,10 @@ async def on_text_message(message: types.Message):
                     
                     if status['status'] == 'member' or status['status'] == 'creator' or status['status'] == 'administrator':
                         # TEKTOK
-                        # if message.text.lower().startswith('https://www.tiktok.com/') or message.text.lower().startswith('https://vt.tiktok.com/') or message.text.lower().startswith('https://tiktok.com/'):
-                        #     await tiktok(message,os.getenv('THOST'),os.getenv('TKEY'),os.getenv('TURL'))
-                        #     break
+                        if message.text.lower().startswith('https://www.tiktok.com/') or message.text.lower().startswith('https://vt.tiktok.com/') or message.text.lower().startswith('https://tiktok.com/'):
+                            # await tiktok(message,os.getenv('THOST'),os.getenv('TKEY'),os.getenv('TURL'))
+                            await message.answer('<b>{}</b> - tiktok video tehnik sabablarga kura yuklanmadi buning uchun uzur suraymiz, botda tuzatish ishlari olib borilyapti tez orada bu xato tuzatiladi hozircha instagramdan narsa yuklab olishingiz mumkun'.format(message.text))
+                            break
                         # INSTAGRAM
                         if message.text.lower().startswith('https://www.instagram.com/') or message.text.lower().startswith('https://instagram.com/'):
                             await instagram(message,os.getenv('IHOST'),os.getenv('IKEY'),os.getenv('IURL'))
