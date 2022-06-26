@@ -67,4 +67,4 @@ async def instagram(message,HOST,KEY,URL):
     - aiogram
     - pysqlite3
     - requests
-    
+    # telegramapp
