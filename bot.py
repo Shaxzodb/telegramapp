@@ -95,10 +95,13 @@ async def on_text_message(message: types.Message):
                         global status
                         status = await bot.get_chat_member(channel, message.chat.id)
                     # channel 
+                    
                     if status['status'] == 'member' or status['status'] == 'creator' or status['status'] == 'administrator':
+                        # TEKTOK
                         if message.text.lower().startswith('https://www.tiktok.com/') or message.text.lower().startswith('https://vt.tiktok.com/') or message.text.lower().startswith('https://tiktok.com/'):
                             await tiktok(message,os.getenv('THOST'),os.getenv('TKEY'),os.getenv('TURL'))
                             break
+                        # INSTAGRAM
                         elif message.text.lower().startswith('https://www.instagram.com/') or message.text.lower().startswith('https://instagram.com/'):
                             await instagram(message,os.getenv('IHOST'),os.getenv('IKEY'),os.getenv('IURL'))
                             break
