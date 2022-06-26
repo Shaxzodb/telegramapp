@@ -4,7 +4,7 @@ import requests
 async def instagram(message,HOST,KEY,URL):
     try:
         url = URL
-
+        # BU UZGARDI
         querystring = {"url":f"{message.text}"}
 
         headers = {
